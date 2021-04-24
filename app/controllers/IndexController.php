@@ -7,37 +7,33 @@ use App\Models\QueryObject\Criteria;
 use App\Models\Repository\Repository;
 use Rain\Tpl;
 use Exception;
-use App\Models\Repository\Behavioral\LoadArray;
 
 class IndexController
 {
     public function indexAction()
     {
-        try
-        {
-            $loadPerformed = new LoadArray();
-
-            $prodRepository = new Repository(new Produto);
-            $prodRepository->setLoader($loadPerformed);
+        try{
 
             $criteria = new Criteria();
             $criteria->add('descricao', 'LIKE', "'%F%'");
 
-            $produtos = $prodRepository->load($criteria);
+            $produto = new Produto();
+            
+            $produtos = $produto->load();
 
             Tpl::configure([
-                'cache_dir' => 'views/cache',
-                'tpl_dir'   => 'views/',
-                'debug'     => true,
-                'auto_escape' => false
+                'cache_dir'     => 'views/cache',
+                'tpl_dir'       => 'views/',
+                'debug'         => true,
+                'auto_escape'   => false
             ]);
 
     
             $tpl = new Tpl();
     
-            $tpl->assign('header', file_get_contents('views/templates/header.html'));
-            $tpl->assign('produtos', $produtos);
-            $tpl->assign('footer', '');
+            $tpl->assign('header'   , file_get_contents('views/templates/header.html'));
+            $tpl->assign('produtos' , $produtos);
+            $tpl->assign('footer'   , '');
     
             $tpl->draw('cadastro');
 

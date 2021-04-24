@@ -8,12 +8,10 @@ use App\Models\QueryObject\Criteria;
 use App\Models\QueryObject\IQueryObject;
 use Database\Transaction;
 use Exception;
-use App\Models\Repository\Behavioral\Loader;
 
 final class Repository
 {
     private Record $activeRecord;
-    private Loader $performedLoader;
 
     function __construct(Record $activeRecord)
     {
@@ -22,7 +20,30 @@ final class Repository
 
     public function load(IQueryObject $criteria)
     {
-        return $this->performedLoader->load($criteria, $this);
+        $query = "SELECT * FROM {$this->activeRecord->getEntity()} WHERE" . $criteria->dump();
+        $collection[] = null;
+
+        try 
+        {
+            $stmt = Transaction::getConnection()->prepare($query);
+
+            $stmt->execute();
+
+            while($object = $stmt->fetchObject()) {
+                $collection[] = $object;
+            }
+
+            Transaction::close();
+
+            return $collection != null ? $collection : FALSE;
+        } 
+        catch (Exception $e) 
+        {
+            Transaction::rollback();
+            echo $e->getMessage();
+            echo json_encode($e->getTrace());
+            return false;
+        }
     }
 
     public function update()
@@ -31,15 +52,5 @@ final class Repository
 
     public function delete()
     {
-    }
-
-    public function setLoader(Loader $loader)
-    {
-        $this->performedLoader = $loader;
-    }
-
-    public function getRecord()
-    {
-        return $this->activeRecord;
     }
 }

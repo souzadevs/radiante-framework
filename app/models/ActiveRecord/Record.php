@@ -10,6 +10,7 @@ use Database\Log\Behavioral\LoggerTXT;
 use Database\Log\Behavioral\LoggerXML;
 use PDOException;
 use Exception;
+use PDO;
 
 abstract class Record
 {
@@ -139,12 +140,39 @@ abstract class Record
             }
         }
     }
+
     public function load()
     {
+        $query = "SELECT * FROM {$this->getEntity()}";
+
+        try
+        {
+            $stmt = Transaction::getConnection()->prepare($query);
+
+            $stmt->execute();
+
+            $collection = [];
+
+            while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                $collection[] = $row;
+            }
+
+            Transaction::close();
+
+            return $collection;
+
+        }
+        catch(Exception $e)
+        {
+            echo $e->getMessage();
+            Transaction::rollback();
+        }
     }
+
     public function delete()
     {
     }
+
     public static function find($id)
     {
     }
