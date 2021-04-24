@@ -1,0 +1,2 @@
+datetime;message
+"16/04/2021 05:04:08";"INSERT INTO produtos (descricao, preco, estoque) VALUES (:descricao, :preco, :estoque)"

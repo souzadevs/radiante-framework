@@ -1,0 +1,6 @@
+{
+    "require" : {
+        "rain/raintpl" : "3.*",
+        "slim/slim" : "3.*"
+    }
+}

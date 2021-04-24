@@ -1,0 +1,107 @@
+<?php if(!class_exists('Rain\Tpl')){exit;}?><!doctype html>
+<html lang="en">
+
+<head>
+	<title>Cadastro</title>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+	<!-- Font Awesome CSS -->
+	<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+	<?php echo $header; ?>
+
+	<div class="container-fluid">
+		<div class="row mt-5"></div>
+		<!-- <div class="row">
+			<div class="col-3">
+
+			</div>
+			<div class="col-6 text-center">
+
+				<div class="bg-dark text-white p-2" style="border-top-left-radius: 5px;border-top-right-radius: 5px">
+					Produto
+				</div>
+				<form id="form" action="?controller=Produto&action=store" method="POST" class="p-5" style="border-radius: 5px; background-color: rgb(240, 240, 240);">
+					<input type="hidden" name="id" id="id">
+					<div class="input-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text">
+								<i class="fas fa-comment-exclamation    "></i>
+							</span>
+						</div>
+						<input type="text" name="descricao" id="descricao" class="form-control" placeholder="Descrição">
+					</div>
+
+					<div class="input-group mt-2">
+						<div class="input-group-prepend">
+							<span class="input-group-text">
+								<i class="fas fa-money-bill    "></i>
+							</span>
+						</div>
+						<input type="number" min="0" step="0.01" name="preco" id="preco" class="form-control" placeholder="Preço">
+						
+						<div class="input-group-prepend ml-3">
+							<span class="input-group-text">
+								<i class="fas fa-person-carry    "></i>
+							</span>
+						</div>
+						<input type="number" name="estoque" id="estoque" class="form-control"
+							placeholder="Em estoque">
+					</div>
+					<input type="submit" value="Salvar" class="btn btn-dark mt-4 w-50">
+				</form>
+			</div>
+			<div class="col-3">
+
+			</div>
+		</div> -->
+	
+		<table class="table">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<td>DESCRIÇÃO</td>
+					<td>ESTOQUE</td>
+					<td>PREÇO</td>
+				</tr>
+			</thead>
+			<tbody>
+				<?php $counter1=-1;  if( isset($produtos) && ( is_array($produtos) || $produtos instanceof Traversable ) && sizeof($produtos) ) foreach( $produtos as $key1 => $value1 ){ $counter1++; ?>
+					<tr>
+						<th><?php echo $value1["id"]; ?></th>
+						<td><?php echo $value1["descricao"]; ?></td>
+						<td><?php echo $value1["estoque"]; ?></td>
+						<td><?php echo $value1["preco"]; ?></td>
+					</tr>
+				<?php } ?>
+			</tbody>
+		</table>
+	</div>
+
+	<?php echo $footer; ?>
+
+
+	<!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+	</script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+		integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+	</script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+	</script>
+</body>
+
+
+
+</html>

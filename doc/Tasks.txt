@@ -1,0 +1,30 @@
+1. Completar classe Criteria
+    @: {A classe criteria carece em alguns momentos de definição de critérios, 
+    como por exemplo, a inserção de diretivas como ORDER BY, LIMIT e OFFSET.
+    É importante notar que uma consulta não possui apenas critérios, mas também
+    outras diretivas de estrutura de consulta.}
+
+2. Completar classe Record
+    @: {Programar métodos de DELETE e LOAD}
+
+3. Completar classe Repository
+    @: {Programar UPDATE e DELETE.}
+
+4. Definir User Story
+    @: Conseguir uma história de usuário para e-commerce
+    
+
+5. Definir modelagem conceitual
+    @: Construir DER
+
+6. Definir modelagem lógica
+
+7. Definir modelagem física (SQL)
+
+8. Fazer levantamento dos requisitos do sistema
+
+9. Implementar RainTPL
+
+10. Implementar Slim
+
+11. Implementar Composer

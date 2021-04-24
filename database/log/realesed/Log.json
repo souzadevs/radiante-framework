@@ -1,0 +1,4 @@
+{
+    "datetime": "16\/04\/2021 03:04:19",
+    "message": "INSERT INTO produtos (descricao, preco, estoque) VALUES (:descricao, :preco, :estoque)"
+}
