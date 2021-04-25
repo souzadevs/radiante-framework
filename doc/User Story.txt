@@ -1,0 +1,43 @@
+Biblioteca
+
+
+História de usuário
+
+Uma biblioteca possui muitos livros dentro de si. Lá, fazemos o armazenamento dos livros.
+
+* Ver entidades e seus atributos de negócio
+
+# Livro
+# Armazém/Estoque
+
+É importante ter uma gestão destes livros. Isto significa que precismos
+saber o nome do livro, sua publicadora, ISBN etc.
+
+# Livro (nome, publicadora, ISBN)
+
+Além de armazenar e ter um controle do que temos. Precismos fazer a
+administração dos livros que saem e entram (empréstimos).
+
+* Administração/Sistema de Gestão da biblioteca
+# Empréstimos
+
+* Não é necessário registrar todas as coisas que existem em uma empresa.
+* Mas, apenas as coisas pertinentes as necessidades do cliente.
+* Isso faz com que consigamos desenvolver um sistema por demanda.
+* Caso haja alguma coisa a mais que precisar ser feito, será um novo pedido.
+
+Na biblioteca, podemos emprestar livros para nossos leitores (usuarios)
+Quando emprestamos um livro, precisamos anotar o dia, hora, qual livro,
+para quem e seus dados pessoais (nome completo, contato, rg)
+
+Baseado na história de usuário, o desenvolvedor pode levantar alguns
+requisitos de sistema. Ex:
+
+Implementar registro de livros com nome, autor, ISBN, publicadora.
+Implementar consulta dos livros.
+Implementar cadastro de usuarios
+Implemenar consulta de usuarios
+Implementar cadastro de empréstimos
+Implementar consulta de empréstimos
+
+
