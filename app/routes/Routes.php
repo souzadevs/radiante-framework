@@ -4,7 +4,7 @@ namespace App\Routes;
 
 use Slim\App;
 use App\Controllers\IndexController;
-
+use App\Controllers\ProdutoController;
 
 /* ROUTES */
 
@@ -17,12 +17,18 @@ $app = new App(
 );
 
 $app->get('/', function(){
-    $indexController = new IndexController();
-    $indexController->indexAction();
+    $controller = new IndexController();
+    $controller->indexAction();
 });
 
-$app->get('/loja', function(){
-    echo "Loja!";
+$app->get('/produto/cadastro', function(){
+    $produtoController = new ProdutoController();
+    $produtoController->listaAction();
+});
+
+$app->get('/produto/lista', function(){
+    $produtoController = new ProdutoController();
+    $produtoController->cadastroAction();
 });
 
 $app->get('/login', function(){

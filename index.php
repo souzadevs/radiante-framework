@@ -4,9 +4,18 @@
 
 
 /* CONSTANTS */
+
+use function PHPSTORM_META\map;
+
 define("DS"     , DIRECTORY_SEPARATOR);
 define("ROOT"   , __DIR__);
 define("ROOTS"  , ROOT . DS); //ROOT WITH DIRECTORY SEPARATOR (FOR EASY CALLS)
+define("TPL_SET",[
+    'cache_dir'     => 'views/cache/',
+    'tpl_dir'       => 'views/',
+    'auto_escape'   => false,
+    'debug'         => true
+]);
 
 /* PRESETS */
 date_default_timezone_set('America/Sao_Paulo'); //TIMEZONE

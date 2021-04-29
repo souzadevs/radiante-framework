@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<?php if(!class_exists('Rain\Tpl')){exit;}?><!DOCTYPE html>
 <html lang="pt_BR">
 
 <head>
@@ -14,7 +14,7 @@
 </head>
 
 <body>
-	{$header}
+	<?php echo $header; ?>
 	
 	<div class="container-fluid mt-5">
 		<div class="row">

@@ -12,36 +12,17 @@ class IndexController
 {
     public function indexAction()
     {
-        try{
 
-            $criteria = new Criteria();
-            $criteria->add('descricao', 'LIKE', "'%F%'");
+        Tpl::configure([
+            'cache_dir'     => 'views/cache',
+            'tpl_dir'       => 'views/',
+            'auto_escape'   => false,
+            'degbuf'        => true
+        ]);
 
-            $produto = new Produto();
-            
-            $produtos = $produto->load();
+        $rainTpl = new Tpl();
 
-            Tpl::configure([
-                'cache_dir'     => 'views/cache',
-                'tpl_dir'       => 'views/',
-                'debug'         => true,
-                'auto_escape'   => false
-            ]);
-
-    
-            $tpl = new Tpl();
-    
-            $tpl->assign('header'   , file_get_contents('views/templates/header.html'));
-            $tpl->assign('produtos' , $produtos);
-            $tpl->assign('footer'   , '');
-    
-            $tpl->draw('cadastro');
-
-        } 
-        catch(Exception $e)
-        {
-            echo $e->getMessage();
-        }
+        $rainTpl->draw('index');
 
         // Renderer::draw('cadastro', 
         // [

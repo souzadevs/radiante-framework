@@ -2,7 +2,7 @@
 
 namespace Tools;
 
-class CSVParser 
+final class CSVParser 
 {
     private $file, $delimiter, $data;
 

@@ -1,4 +1,4 @@
-<?php if(!class_exists('Rain\Tpl')){exit;}?><!doctype html>
+<!doctype html>
 <html lang="en">
 
 <head>
@@ -11,13 +11,13 @@
 	<!-- Font Awesome CSS -->
 	<!-- <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/> -->
 	<!-- Bootstrap CSS -->
-	<link rel="stylesheet" href="resources/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/resources/css/bootstrap.min.css">
 	<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
 </head>
 
 <body>
-	<?php echo $header; ?>
+	{$header}
 
 	<div class="container-fluid">
 		<div class="row mt-5"></div>
@@ -75,26 +75,27 @@
 				</tr>
 			</thead>
 			<tbody>
-				<?php $counter1=-1;  if( isset($produtos) && ( is_array($produtos) || $produtos instanceof Traversable ) && sizeof($produtos) ) foreach( $produtos as $key1 => $value1 ){ $counter1++; ?>
+				{loop="$produtos"}
 					<tr>
-						<th><?php echo $value1["id"]; ?></th>
-						<td><?php echo $value1["descricao"]; ?></td>
-						<td><?php echo $value1["estoque"]; ?></td>
-						<td><?php echo $value1["preco"]; ?></td>
+						<th>{$value.id}</th>
+						<td>{$value.descricao}</td>
+						<td>{$value.estoque}</td>
+						<td>{$value.preco}</td>
 					</tr>
-				<?php } ?>
+				{/loop}
 			</tbody>
 		</table>
 	</div>
 
-	<?php echo $footer; ?>
+	{$baseUrl}
 
+	
 
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-	<script src="resources/js/jquery.min.js"></script>
-	<script src="resources/js/popper.min.js"></script>
-	<script src="resources/js/bootstrap.min.js"></script>
+	<script src="/resources/js/jquery.min.js"></script>
+	<script src="/resources/js/popper.min.js"></script>
+	<script src="/resources/js/bootstrap.min.js"></script>
 	<!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
 	</script>

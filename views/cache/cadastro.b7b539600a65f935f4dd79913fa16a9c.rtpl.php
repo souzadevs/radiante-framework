@@ -9,18 +9,19 @@
 
 
 	<!-- Font Awesome CSS -->
-	<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+	<!-- <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/> -->
 	<!-- Bootstrap CSS -->
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="stylesheet" href="/resources/css/bootstrap.min.css">
+	<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
 </head>
 
 <body>
-	<?php echo htmlspecialchars( $footer, ENT_COMPAT, 'UTF-8', FALSE ); ?>
+	<?php echo $header; ?>
 
 	<div class="container-fluid">
 		<div class="row mt-5"></div>
-		<div class="row">
+		<!-- <div class="row">
 			<div class="col-3">
 
 			</div>
@@ -62,15 +63,40 @@
 			<div class="col-3">
 
 			</div>
-		</div>
+		</div> -->
+	
+		<table class="table">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<td>DESCRIÇÃO</td>
+					<td>ESTOQUE</td>
+					<td>PREÇO</td>
+				</tr>
+			</thead>
+			<tbody>
+				<?php $counter1=-1;  if( isset($produtos) && ( is_array($produtos) || $produtos instanceof Traversable ) && sizeof($produtos) ) foreach( $produtos as $key1 => $value1 ){ $counter1++; ?>
+					<tr>
+						<th><?php echo $value1["id"]; ?></th>
+						<td><?php echo $value1["descricao"]; ?></td>
+						<td><?php echo $value1["estoque"]; ?></td>
+						<td><?php echo $value1["preco"]; ?></td>
+					</tr>
+				<?php } ?>
+			</tbody>
+		</table>
 	</div>
 
-	<?php echo htmlspecialchars( $footer, ENT_COMPAT, 'UTF-8', FALSE ); ?>
+	<?php echo $baseUrl; ?>
 
+	
 
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+	<script src="/resources/js/jquery.min.js"></script>
+	<script src="/resources/js/popper.min.js"></script>
+	<script src="/resources/js/bootstrap.min.js"></script>
+	<!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
 	</script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
@@ -78,7 +104,7 @@
 	</script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
 		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
-	</script>
+	</script> -->
 </body>
 
 
