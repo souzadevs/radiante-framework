@@ -14,11 +14,7 @@ class ProdutoController
         $produto = Produto::fromHaystack($_REQUEST);
         
         $produto->store();
-
-        // Renderer::draw('cadastro', 
-        // [
-        //     'header' => Renderer::getContents('header')
-        // ]);
+         
     }
 
     public function listaAction()
@@ -27,17 +23,18 @@ class ProdutoController
             'cache_dir'     => 'views/cache',
             'tpl_dir'       => 'views/',
             'auto_escape'   => false,
-            'debug'        => true
+            'debug'        => false
         ]);
         
         $produtos = (new Produto())->load();
 
         $admin = new Tpl();
 
-        $admin->assign('header',          ViewHelper::getTemplate('header'));
-        $admin->assign('leftbar',         ViewHelper::getTemplate('left_bar'));
-        $admin->assign('resources_css',   ViewHelper::getTemplate('resources_css'));
-        $admin->assign('resources_js',    ViewHelper::getTemplate('resources_js'));
+        $admin->assign('header',            ViewHelper::getTemplate('header'));
+        $admin->assign('leftbar',           ViewHelper::getTemplate('left_bar'));
+        $admin->assign('resources_css',     ViewHelper::getTemplate('resources_css'));
+        $admin->assign('resources_js',      ViewHelper::getTemplate('resources_js'));
+        $admin->assign('test',              true);
         $admin->assign(
             'content',         
             ViewHelper::getTemplate(

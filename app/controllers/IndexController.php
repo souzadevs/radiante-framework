@@ -14,9 +14,17 @@ class IndexController
 {
     public function indexAction()
     {
+        Tpl::configure(TPL_SET);
 
+        $tpl = new Tpl();
+
+        $tpl->assign('aside', ViewHelper::getTemplate('aside'));
+
+        $tpl->assign('produtos', (new Produto)->load());
+
+        $tpl->draw('data');
         
-
+        
 
 
         // var_dump(ViewHelper::getTemplate('product_list', true, $produtos));

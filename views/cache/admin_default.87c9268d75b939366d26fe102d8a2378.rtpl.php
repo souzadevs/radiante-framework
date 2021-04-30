@@ -31,8 +31,6 @@
         </div>
     </div>
 
-
-
     <?php echo $resources_js; ?>
 
 </body>
