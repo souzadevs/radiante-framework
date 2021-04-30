@@ -4,6 +4,7 @@ namespace App\Routes;
 
 use Slim\App;
 use App\Controllers\IndexController;
+use App\Controllers\LoginController;
 use App\Controllers\ProdutoController;
 
 /* ROUTES */
@@ -23,14 +24,15 @@ $app->get('/', function(){
 
 $app->get('/produto/cadastro', function(){
     $produtoController = new ProdutoController();
-    $produtoController->listaAction();
+    $produtoController->cadastroAction();
 });
 
 $app->get('/produto/lista', function(){
     $produtoController = new ProdutoController();
-    $produtoController->cadastroAction();
+    $produtoController->listaAction();
 });
 
 $app->get('/login', function(){
-    echo "Login!";
+    $loginController = new LoginController();
+    $loginController->loginFormAction();
 });

@@ -93,6 +93,7 @@ class PluginContainer
         if (!isset($this->plugins[$name])) {
             return;
         }
+
         $plugin = $this->plugins[$name];
         unset($this->plugins[$name]);
         // remove all registered callables

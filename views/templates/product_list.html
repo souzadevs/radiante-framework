@@ -1,0 +1,44 @@
+<div class="container-fluid bg-secondary">
+    <div class="row">
+
+    </div>
+    <div class="row mt-5">
+        PRODUTOS
+    </div>
+    <div class="space mt-5">
+        space
+    </div>
+    <div class="row mt-5">
+        <button class="btn btn-success">
+            Novo <i class="fas fa-plus    "></i>
+        </button>
+    </div>
+    <div class="row mt-5">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <td>ID</td>
+                    <td>Descrição</td>
+                    <td>Preço</td>
+                    <td>Qnt. Estoque</td>
+                    <td>Editar</td>
+                    <td>Ver</td>
+                    <td>Excluir</td>
+                </tr>
+            </thead>
+            <tbody>
+                {loop="$produtos"}
+                <tr>
+                    <td>{$value.id}</td>
+                    <td>{$value.descricao}</td>
+                    <td>{$value.preco}</td>
+                    <td>{$value.estoque}</td>
+                    <td><i class="fas fa-edit"></i></td>
+                    <td><i class="fa fa-eye" aria-hidden="true"></i></td>
+                    <td><i class="fa fa-trash" aria-hidden="true"></i></td>
+                </tr>
+                {/loop}
+            </tbody>
+        </table>
+    </div>
+</div>

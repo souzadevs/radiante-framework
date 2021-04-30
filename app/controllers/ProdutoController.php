@@ -23,18 +23,30 @@ class ProdutoController
 
     public function listaAction()
     {
-        $produto = new Produto();
-        $produtos = $produto->load();
-
-        Tpl::configure(TPL_SET);
-
-        $tpl = new Tpl();
+        Tpl::configure([
+            'cache_dir'     => 'views/cache',
+            'tpl_dir'       => 'views/',
+            'auto_escape'   => false,
+            'debug'        => true
+        ]);
         
-        $tpl->assign('header', ViewHelper::getTemplate('header'));
-        $tpl->assign('produtos', $produtos);
-        // $tpl->assign('baseUrl', TPL_SET['base_url']);
+        $produtos = (new Produto())->load();
 
-        $tpl->draw('lista');
+        $admin = new Tpl();
+
+        $admin->assign('header',          ViewHelper::getTemplate('header'));
+        $admin->assign('leftbar',         ViewHelper::getTemplate('left_bar'));
+        $admin->assign('resources_css',   ViewHelper::getTemplate('resources_css'));
+        $admin->assign('resources_js',    ViewHelper::getTemplate('resources_js'));
+        $admin->assign(
+            'content',         
+            ViewHelper::getTemplate(
+                'product_list', true, [
+                    'produtos' => $produtos
+                ])
+        );
+
+        $admin->draw('admin_default');
     }
 
     public function cadastroAction()

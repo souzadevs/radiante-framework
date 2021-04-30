@@ -32,7 +32,8 @@ namespace Rain\Tpl;
  *
  *  @version 3.0 Alpha milestone: https://github.com/rainphp/raintpl3/issues/milestones?with_issues=no
  */
-class Parser {
+class Parser
+{
 
     // variables
     public $var = array();
@@ -102,7 +103,8 @@ class Parser {
         'syslog', 'xmlrpc_entity_decode'
     );
 
-    public function __construct($config, $plugins, $registered_tags) {
+    public function __construct($config, $plugins, $registered_tags)
+    {
         $this->config = $config;
         static::$plugins = $plugins;
         static::$registered_tags = $registered_tags;
@@ -113,7 +115,8 @@ class Parser {
      *
      * @return \Rain\Tpl\PluginContainer
      */
-    protected static function getPlugins() {
+    protected static function getPlugins()
+    {
         return static::$plugins
             ?: static::$plugins = new PluginContainer();
     }
@@ -155,9 +158,9 @@ class Parser {
                 $code = str_replace(array("<?", "?>"), array("&lt;?", "?&gt;"), $code);
 
             // xml re-substitution
-            $code = preg_replace_callback("/##XML(.*?)XML##/s", function( $match ) {
-                    return "<?php echo '<?xml " . stripslashes($match[1]) . " ?>'; ?>";
-                }, $code);
+            $code = preg_replace_callback("/##XML(.*?)XML##/s", function ($match) {
+                return "<?php echo '<?xml " . stripslashes($match[1]) . " ?>'; ?>";
+            }, $code);
 
             $parsedCode = $this->compileTemplate($code, $isString = false, $templateBasedir, $templateDirectory, $templateFilepath);
             $parsedCode = "<?php if(!class_exists('Rain\Tpl')){exit;}?>" . $parsedCode;
@@ -193,13 +196,14 @@ class Parser {
      * @param string $parsedTemplateFilepath: cache file where to save the template
      * @param string $code: code to compile
      */
-    public function compileString($templateName, $templateBasedir, $templateFilepath, $parsedTemplateFilepath, $code) {
+    public function compileString($templateName, $templateBasedir, $templateFilepath, $parsedTemplateFilepath, $code)
+    {
 
         // open the template
         $fp = fopen($parsedTemplateFilepath, "w");
 
         // lock the file
-        if (flock($fp, LOCK_SH)) {
+        if (true /* flock($fp, LOCK_SH )*/) {
 
             // xml substitution
             $code = preg_replace("/<\?xml(.*?)\?>/s", "##XML\\1XML##", $code);
@@ -209,9 +213,9 @@ class Parser {
                 $code = str_replace(array("<?", "?>"), array("&lt;?", "?&gt;"), $code);
 
             // xml re-substitution
-            $code = preg_replace_callback("/##XML(.*?)XML##/s", function( $match ) {
-                    return "<?php echo '<?xml " . stripslashes($match[1]) . " ?>'; ?>";
-                }, $code);
+            $code = preg_replace_callback("/##XML(.*?)XML##/s", function ($match) {
+                return "<?php echo '<?xml " . stripslashes($match[1]) . " ?>'; ?>";
+            }, $code);
 
             $parsedCode = $this->compileTemplate($code, $isString = true, $templateBasedir, $templateDirectory = null, $templateFilepath);
 
@@ -245,22 +249,23 @@ class Parser {
      *
      * @param string $code: code to compile
      */
-    protected function compileTemplate($code, $isString, $templateBasedir, $templateDirectory, $templateFilepath) {
+    protected function compileTemplate($code, $isString, $templateBasedir, $templateDirectory, $templateFilepath)
+    {
 
         // Execute plugins, before_parse
         $context = $this->getPlugins()->createContext(array(
-                'code' => $code,
-                'template_basedir' => $templateBasedir,
-                'template_filepath' => $templateFilepath,
-                'conf' => $this->config,
-            ));
+            'code' => $code,
+            'template_basedir' => $templateBasedir,
+            'template_filepath' => $templateFilepath,
+            'conf' => $this->config,
+        ));
 
         $this->getPlugins()->run('beforeParse', $context);
         $code = $context->code;
 
         // set tags
         foreach (static::$tags as $tag => $tagArray) {
-            list( $split, $match ) = $tagArray;
+            list($split, $match) = $tagArray;
             $tagSplit[$tag] = $split;
             $tagMatch[$tag] = $match;
         }
@@ -318,7 +323,7 @@ class Parser {
                     $actualFolder = $templateDirectory;
 
                     if (is_array($this->config['tpl_dir'])) {
-                        foreach($this->config['tpl_dir'] as $tpl) {
+                        foreach ($this->config['tpl_dir'] as $tpl) {
                             if (substr($actualFolder, 0, strlen($tpl)) == $tpl) {
                                 $actualFolder = substr($actualFolder, strlen($tpl));
                             }
@@ -335,17 +340,15 @@ class Parser {
                     }
 
                     // reduce the path
-                    $includeTemplate = Parser::reducePath( $includeTemplate );
+                    $includeTemplate = Parser::reducePath($includeTemplate);
 
                     if (strpos($matches[1], '$') !== false) {
                         //dynamic include
                         $parsedCode .= '<?php require $this->checkTemplate(' . $includeTemplate . ');?>';
-
                     } else {
                         //dynamic include
                         $parsedCode .= '<?php require $this->checkTemplate("' . $includeTemplate . '");?>';
                     }
-
                 }
 
                 //loop
@@ -482,7 +485,6 @@ class Parser {
                     } else {
                         $this->config['auto_escape'] = true;
                     }
-
                 }
 
                 // autoescape on
@@ -538,7 +540,7 @@ class Parser {
                         }
                     }
 
-                    if (!$found){
+                    if (!$found) {
                         $parsedCode .= $html;
                     }
                 }
@@ -583,7 +585,8 @@ class Parser {
         return $context->code;
     }
 
-    protected function varReplace($html, $loopLevel = NULL, $escape = TRUE, $echo = FALSE) {
+    protected function varReplace($html, $loopLevel = NULL, $escape = TRUE, $echo = FALSE)
+    {
 
         // change variable name if loop level
         if (!empty($loopLevel))
@@ -596,7 +599,7 @@ class Parser {
 
                 $rep = preg_replace('/\[(\${0,1}[a-zA-Z_0-9]*)\]/', '["$1"]', $matches[1][$i]);
                 //$rep = preg_replace('/\.(\${0,1}[a-zA-Z_0-9]*)/', '["$1"]', $rep);
-                $rep = preg_replace( '/\.(\${0,1}[a-zA-Z_0-9]*(?![a-zA-Z_0-9]*(\'|\")))/', '["$1"]', $rep );
+                $rep = preg_replace('/\.(\${0,1}[a-zA-Z_0-9]*(?![a-zA-Z_0-9]*(\'|\")))/', '["$1"]', $rep);
                 $html = str_replace($matches[0][$i], $rep, $html);
             }
 
@@ -620,26 +623,28 @@ class Parser {
         return $html;
     }
 
-    protected function conReplace($html) {
+    protected function conReplace($html)
+    {
         $html = $this->modifierReplace($html);
         return $html;
     }
 
-    protected function modifierReplace($html) {
+    protected function modifierReplace($html)
+    {
 
         $this->blackList($html);
-        if (strpos($html,'|') !== false && substr($html,strpos($html,'|')+1,1) != "|") {
-            preg_match('/([\$a-z_A-Z0-9\(\),\[\]"->]+)\|([\$a-z_A-Z0-9\(\):,\[\]"->\s]+)/i', $html,$result);
+        if (strpos($html, '|') !== false && substr($html, strpos($html, '|') + 1, 1) != "|") {
+            preg_match('/([\$a-z_A-Z0-9\(\),\[\]"->]+)\|([\$a-z_A-Z0-9\(\):,\[\]"->\s]+)/i', $html, $result);
 
             $function_params = $result[1];
-            $result[2] = str_replace("::", "@double_dot@", $result[2] );
-            $explode = explode(":",$result[2]);
+            $result[2] = str_replace("::", "@double_dot@", $result[2]);
+            $explode = explode(":", $result[2]);
             $function = str_replace('@double_dot@', '::', $explode[0]);
             $params = isset($explode[1]) ? "," . $explode[1] : null;
 
-            $html = str_replace($result[0],$function . "(" . $function_params . "$params)",$html);
+            $html = str_replace($result[0], $function . "(" . $function_params . "$params)", $html);
 
-            if (strpos($html,'|') !== false && substr($html,strpos($html,'|')+1,1) != "|") {
+            if (strpos($html, '|') !== false && substr($html, strpos($html, '|') + 1, 1) != "|") {
                 $html = $this->modifierReplace($html);
             }
         }
@@ -647,7 +652,8 @@ class Parser {
         return $html;
     }
 
-    protected function blackList($html) {
+    protected function blackList($html)
+    {
 
         if (!$this->config['sandbox'] || !static::$black_list)
             return true;
@@ -674,14 +680,15 @@ class Parser {
         }
     }
 
-    public static function reducePath( $path ){
+    public static function reducePath($path)
+    {
         // reduce the path
-        $path = str_replace( "://", "@not_replace@", $path );
-        $path = preg_replace( "#(/+)#", "/", $path );
-        $path = preg_replace( "#(/\./+)#", "/", $path );
-        $path = str_replace( "@not_replace@", "://", $path );
-        while( preg_match('#\w+\.\./#', $path) ) {
-            $path = preg_replace('#\w+/\.\./#', '', $path );
+        $path = str_replace("://", "@not_replace@", $path);
+        $path = preg_replace("#(/+)#", "/", $path);
+        $path = preg_replace("#(/\./+)#", "/", $path);
+        $path = str_replace("@not_replace@", "://", $path);
+        while (preg_match('#\w+\.\./#', $path)) {
+            $path = preg_replace('#\w+/\.\./#', '', $path);
         }
 
         return $path;

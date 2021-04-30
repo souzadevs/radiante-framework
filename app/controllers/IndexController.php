@@ -7,22 +7,44 @@ use App\Models\QueryObject\Criteria;
 use App\Models\Repository\Repository;
 use Rain\Tpl;
 use Exception;
+use Rain\Tpl\Plugin\PathReplace;
+use Tools\ViewHelper;
 
 class IndexController
 {
     public function indexAction()
     {
 
-        Tpl::configure([
-            'cache_dir'     => 'views/cache',
-            'tpl_dir'       => 'views/',
-            'auto_escape'   => false,
-            'degbuf'        => true
-        ]);
+        
 
-        $rainTpl = new Tpl();
 
-        $rainTpl->draw('index');
+
+        // var_dump(ViewHelper::getTemplate('product_list', true, $produtos));
+
+        // $admin = new Tpl();
+
+        // $admin->assign('produtos', (new Produto)->load());
+        // $admin->assign('header',          ViewHelper::getTemplate('header'));
+        // $admin->assign('leftbar',         ViewHelper::getTemplate('left_bar'));
+
+
+        // $admin->assign('resources_css',   ViewHelper::getTemplate('resources_css'));
+        // $admin->assign('resources_js',    ViewHelper::getTemplate('resources_js'));
+        
+
+
+        // $productList = new Tpl();
+        // $productList->assign('content', ViewHelper::getTemplate('product_list'));
+        // $productList->draw('admin_default');
+
+        // $admin->assign(
+        //     'content',         
+        //     $productList->drawString('oi')
+        // );
+
+        // Tpl::removePlugin('pathRelplace');
+
+        // $admin->draw('admin_default');
 
         // Renderer::draw('cadastro', 
         // [
@@ -32,13 +54,13 @@ class IndexController
         //------------------------------------------------------
 
         // $produto = Produto::fromHaystack($_REQUEST);
-        
+
         // $produto->store();
 
         // var_dump($produto->getProperties());
 
-        
-        
+
+
         //------------------------------------------------------
 
 
@@ -51,8 +73,8 @@ class IndexController
         // while($row = $csvParser->fetch()) {
         //     var_dump("<br>" . json_encode($row));
         // }
-        
-        
+
+
         //------------------------------------------------------
 
 

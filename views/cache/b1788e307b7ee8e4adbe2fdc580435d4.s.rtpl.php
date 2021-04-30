@@ -1,0 +1,1 @@
+<?php if(!class_exists('Rain\Tpl')){exit;}?>C:\xampp\htdocs\2021\Radiante_Framework\views/templates/product_list.html
