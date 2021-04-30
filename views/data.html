@@ -267,9 +267,9 @@
   <script src="/resources/plugins/datatables-buttons/js/buttons.print.min.js"></script>
   <script src="/resources/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
   <!-- AdminLTE App -->
-  <script src="/resource/dist/js/adminlte.min.js"></script>
+  <script src="/resources/dist/js/adminlte.min.js"></script>
   <!-- AdminLTE for demo purposes -->
-  <script src="/resource/dist/js/demo.js"></script>
+  <script src="/resources/dist/js/demo.js"></script>
   <!-- Page specific script -->
   <script>
     $(function () {
