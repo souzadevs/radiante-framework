@@ -24,12 +24,12 @@ $app->get('/', function(){
 
 $app->get('/produto/cadastro', function(){
     $produtoController = new ProdutoController();
-    $produtoController->cadastroAction();
+    $produtoController->storeAction();
 });
 
-$app->get('/produto/lista', function(){
+$app->get('/produtos', function(){
     $produtoController = new ProdutoController();
-    $produtoController->listaAction();
+    $produtoController->indexAction();
 });
 
 $app->post('/produto/novo', function(){

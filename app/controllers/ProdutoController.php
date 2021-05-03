@@ -9,52 +9,37 @@ use Tools\ViewHelper;
 
 class ProdutoController
 {
+    public function indexAction()
+    {
+        Tpl::configure(TPL_SET);
+
+        $tpl = new Tpl();
+
+        $tpl->assign('aside', ViewHelper::getTemplate('aside'));
+        $tpl->assign('content', ViewHelper::getTemplate('content_produtos', true, [
+            'produtos' => (new Produto)->load()
+        ]));
+
+        $tpl->draw('administracao');
+    }
+
     public function storeAction()
     {
+        /* Inserção ou atualização do produto no banco */
         $produto = Produto::fromHaystack($_REQUEST);
-        
         $produto->store();
-         
-    }
 
-    public function listaAction()
-    {
-        Tpl::configure([
-            'cache_dir'     => 'views/cache',
-            'tpl_dir'       => 'views/',
-            'auto_escape'   => false,
-            'debug'        => false
-        ]);
-        
-        $produtos = (new Produto())->load();
-
-        $admin = new Tpl();
-
-        $admin->assign('header',            ViewHelper::getTemplate('header'));
-        $admin->assign('leftbar',           ViewHelper::getTemplate('left_bar'));
-        $admin->assign('resources_css',     ViewHelper::getTemplate('resources_css'));
-        $admin->assign('resources_js',      ViewHelper::getTemplate('resources_js'));
-        $admin->assign('test',              true);
-        $admin->assign(
-            'content',         
-            ViewHelper::getTemplate(
-                'product_list', true, [
-                    'produtos' => $produtos
-                ])
-        );
-
-        $admin->draw('admin_default');
-    }
-
-    public function cadastroAction()
-    {
+        /* Preparando visualização da página */
         Tpl::configure(TPL_SET);
         
         $tpl = new Tpl();
 
-        $tpl->assign('header', ViewHelper::getTemplate('header'));
+        $tpl->assign('aside', ViewHelper::getTemplate('aside'));
+        $tpl->assign('content', ViewHelper::getTemplate('content_produtos', true, [
+            'produtos' => (new Produto)->load()
+        ]));
+        $tpl->assign('produto_salvo', true);
 
-        $tpl->draw('cadastro');
-
+        $tpl->draw('administracao');
     }
 }
