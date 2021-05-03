@@ -26,7 +26,7 @@ class ProdutoController
     public function storeAction()
     {
         /* Inserção ou atualização do produto no banco */
-        $produto = Produto::fromHaystack($_REQUEST);
+        $produto = (new Produto())->fromHaystack($_REQUEST);
         $produto->store();
 
         /* Preparando visualização da página */

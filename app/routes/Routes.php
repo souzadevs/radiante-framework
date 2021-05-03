@@ -33,7 +33,7 @@ $app->get('/produtos', function(){
 });
 
 $app->post('/produto/novo', function(){
-    (new IndexController())->createAction();
+    (new ProdutoController())->storeAction();
 });
 
 $app->get('/login', function(){

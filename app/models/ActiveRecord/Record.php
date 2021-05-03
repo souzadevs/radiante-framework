@@ -182,4 +182,27 @@ abstract class Record
         $class = get_class($this);
         return $class::ENTITY;
     }
+
+    protected function getProperties()
+    {
+        return $this->data;
+    }
+
+    public function fromHaystack(array $haystack)
+    {
+        $obj = new $this();
+
+        foreach($haystack as $needle => $value) {
+            if(in_array($needle, array_keys($obj->getProperties()))) {
+                $obj->$needle = $value;
+            }
+        }
+        
+        return $obj;
+    }
+
+    public function getObject()
+    {
+        return new self();
+    }
 }

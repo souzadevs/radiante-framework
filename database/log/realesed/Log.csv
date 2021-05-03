@@ -1,2 +1,2 @@
 datetime;message
-"03/05/2021 12:05:59";"INSERT INTO produtos (descricao, preco, estoque) VALUES (:descricao, :preco, :estoque)"
+"03/05/2021 06:05:05";"INSERT INTO produtos (descricao, preco, estoque) VALUES (:descricao, :preco, :estoque)"

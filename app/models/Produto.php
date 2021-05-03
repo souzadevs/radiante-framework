@@ -25,23 +25,7 @@ class Produto extends Record
     }
 
     /* NON-STATIC METHODS */
-    public function getProperties()
-    {
-        return $this->data;
-    }
 
     /* STATIC METHODS */
-    public static function fromHaystack(array $haystack)
-    {
-        $produto = new Produto();
-
-        foreach($haystack as $needle => $value) {
-            if(in_array($needle, array_keys($produto->getProperties()))) {
-                $produto->$needle = $value;
-            }
-        }
-        
-
-        return $produto;
-    }
+    
 }
