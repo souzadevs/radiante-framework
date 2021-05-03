@@ -25,7 +25,7 @@ require_once("vendor/autoload.php");     // VENDOR AUTOLOADER
 require_once("autoloader.php");          // HOME AUTOLOADER
 require_once("app\\routes\\Routes.php"); // ROUTES
 
-error_reporting(false);
+error_reporting(true);
 
 /* GO! */
 $app->run();

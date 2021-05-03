@@ -32,6 +32,10 @@ $app->get('/produto/lista', function(){
     $produtoController->listaAction();
 });
 
+$app->post('/produto/novo', function(){
+    (new IndexController())->createAction();
+});
+
 $app->get('/login', function(){
     $loginController = new LoginController();
     $loginController->loginFormAction();

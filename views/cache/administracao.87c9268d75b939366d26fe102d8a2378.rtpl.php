@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+<?php if(!class_exists('Rain\Tpl')){exit;}?><!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | DataTables</title>
+  <title>Sistema - TI</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet"
@@ -29,11 +29,11 @@
           <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-          <a href="/resource/index3.html" class="nav-link">Home</a>
+          <a href="/resource/index3.html" class="nav-link">Dashboard</a>
         </li>
-        <li class="nav-item d-none d-sm-inline-block">
-          <a href="#" class="nav-link">Contact</a>
-        </li>
+        <!-- <li class="nav-item d-none d-sm-inline-block">
+          <a href="#" class="nav-link">Dashboard</a>
+        </li> -->
       </ul>
 
       <!-- SEARCH FORM -->
@@ -150,89 +150,11 @@
     <!-- /.navbar -->
 
     <!-- Main Sidebar Container -->
-    {$aside}
+    <?php echo $aside; ?>
 
     <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
-      <!-- Content Header (Page header) -->
-      <section class="content-header">
-        <div class="container-fluid">
-          <div class="row mb-2">
-            <div class="col-sm-6">
-              <h1>DataTables</h1>
-            </div>
-            <div class="col-sm-6">
-              <ol class="breadcrumb float-sm-right">
-                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                <li class="breadcrumb-item active">DataTables</li>
-              </ol>
-            </div>
-          </div>
-        </div><!-- /.container-fluid -->
-      </section>
-
-      <!-- Main content -->
-      <section class="content">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-12">
-              <div class="card">
-                <div class="card-header">
-                  <h3 class="card-title">DataTable with minimal features & hover style</h3>
-                </div>
-                <!-- /.card-header -->
-                <div class="card-body">
-                  <table id="example2" class="table table-bordered table-hover">
-                    <thead>
-                      <tr>
-                        <th><input class="form-control" type="text" name="id" id="" placeholder="ID..."></th>
-                        <th><input class="form-control" type="text" name="id" id="" placeholder="Desc..."></th>
-                        <th><input class="form-control" type="text" name="id" id="" placeholder="Qtd..."></th>
-                        <th><input class="form-control" type="text" name="id" id="" placeholder="Preço..."></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                      </tr>
-                      <tr>
-                        <th>ID</th>
-                        <th>Descrição</th>
-                        <th>Preço</th>
-                        <th>Estoque</th>
-                        <th>Editar</th>
-                        <th>Ver</th>
-                        <th>Excluir</th>
-                      </tr>
-                     
-                    </thead>
-                    <tbody>
-                      {loop="$produtos"}
-                      <tr>
-                        <td>{$value.id}</td>
-                        <td>{$value.descricao}</td>
-                        <td>{$value.preco}</td>
-                        <td>{$value.estoque}</td>
-                        <td><i class="fas fa-edit    "></i></td>
-                        <td><i class="fas fa-eye    "></i></td>
-                        <td><i class="fas fa-trash    "></i></td>
-                      </tr>
-                      {/loop}
-
-                    </tbody>
-                  </table>
-                </div>
-                <!-- /.card-body -->
-              </div>
-              <!-- /.card -->
-              <!-- /.card -->
-            </div>
-            <!-- /.col -->
-          </div>
-          <!-- /.row -->
-        </div>
-        <!-- /.container-fluid -->
-      </section>
-      <!-- /.content -->
-    </div>
+    <?php echo $content; ?>
+    
     <!-- /.content-wrapper -->
     <footer class="main-footer">
       <div class="float-right d-none d-sm-block">
@@ -291,6 +213,17 @@
       });
     });
   </script>
+
+<script>
+  $(document).ready(function () {
+      $("#id").on("keyup", function () {
+          var value = $(this).val().toLowerCase();
+          $("#datatable1 tr").filter(function () {
+              $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+          });
+      });
+  });
+</script>
 </body>
 
 </html>
