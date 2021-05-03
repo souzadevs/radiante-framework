@@ -1,4 +1,4 @@
-<div class="content-wrapper">
+<?php if(!class_exists('Rain\Tpl')){exit;}?><div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <div class="container-fluid">
@@ -25,17 +25,17 @@
                     <button class="btn btn-success w-25" data-toggle="modal" data-target="#novo-produto">
                         Novo <i class="fas fa-plus    "></i>
                     </button>
-                    {if="$store_success"}
+                    <?php if( $store_success ){ ?>
                     <div class="alert alert-success">
                         Cliente cadastrado com sucesso! <i class="fas fa-check-circle"></i>
                     </div>
-                    {/if}
+                    <?php } ?>
 
-                    {if="$store_failure"}
-                    <div class="alert alert-danger mt-2">
+                    <?php if( true ){ ?>
+                    <div class="alert alert-danger">
                         Falha ao salvar cliente! <i class="fas fa-window-close    "></i>
                     </div>
-                    {/if}
+                    <?php } ?>
 
                     <!-- Modal 'Novo +'-->
                     <div class="modal fade" id="novo-produto" tabindex="-1" role="dialog" aria-labelledby="novo-produto"
@@ -59,32 +59,41 @@
                                                 <div class="form-group">
                                                     <label for="nome">Nome completo</label>
                                                     <input type="text" name="nome" class="form-control" id="nome"
-                                                        placeholder="Nome completo..." required>
+                                                        placeholder="Nome completo...">
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="cpf">CPF</label>
-                                                    <input type="text" name="cpf" class="form-control" id="cpf"
-                                                        placeholder="CPF..." required>
+                                                    <input type="text" name="rg" class="form-control" id="cpf"
+                                                        placeholder="CPF...">
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="email">E-mail</label>
                                                     <input type="email" name="email" class="form-control" id="email"
-                                                        placeholder="E-mail..." required>
+                                                        placeholder="E-mail...">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="cpf">CPF</label>
+                                                    <input type="text" name="rg" class="form-control" id="cpf"
+                                                        placeholder="CPF...">
                                                 </div>
                                                 <div class="container-fluid">
                                                     <div class="row">
                                                         <div class="col-6">
-                                                            <div class="form-group">
-                                                                <label for="senha">Senha</label>
-                                                                <input type="password" name="senha" class="form-control"
-                                                                    id="senha" placeholder="Senha..." required>
+                                                            <div class="col-6">
+                                                                <div class="form-group">
+                                                                    <label for="senha">Senha</label>
+                                                                    <input type="text" name="senha" class="form-control"
+                                                                        id="senha" placeholder="Senha...">
+                                                                </div>
                                                             </div>
                                                         </div>
                                                         <div class="col-6">
-                                                            <div class="form-group">
-                                                                <label for="senha">Confirme a senha</label>
-                                                                <input type="password" name="senha" class="form-control"
-                                                                    id="senha" placeholder="Senha..." required>
+                                                            <div class="col-6">
+                                                                <div class="form-group">
+                                                                    <label for="senha">Confirme a senha</label>
+                                                                    <input type="text" name="senha" class="form-control"
+                                                                        id="senha" placeholder="Senha...">
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -125,17 +134,17 @@
 
                                 </thead>
                                 <tbody id="datatable1">
-                                    {loop="$clientes"}
+                                    <?php $counter1=-1;  if( isset($clientes) && ( is_array($clientes) || $clientes instanceof Traversable ) && sizeof($clientes) ) foreach( $clientes as $key1 => $value1 ){ $counter1++; ?>
                                     <tr>
-                                        <td>{$value.id}</td>
-                                        <td>{$value.nome}</td>
-                                        <td>{$value.cpf}</td>
-                                        <td>{$value.email}</td>
+                                        <td><?php echo $value1["id"]; ?></td>
+                                        <td><?php echo $value1["nome"]; ?></td>
+                                        <td><?php echo $value1["cpf"]; ?></td>
+                                        <td><?php echo $value1["email"]; ?></td>
                                         <td><i class="mx-auto fas fa-edit"></i></td>
                                         <td><i class="mx-auto fas fa-eye"></i></td>
                                         <td><i class="mx-auto fas fa-trash"></i></td>
                                     </tr>
-                                    {/loop}
+                                    <?php } ?>
 
                                 </tbody>
                             </table>

@@ -15,7 +15,7 @@ class ProdutoController
 
         $tpl = new Tpl();
 
-        $tpl->assign('aside', ViewHelper::getTemplate('aside'));
+        $tpl->assign('aside',   ViewHelper::getTemplate('aside'));
         $tpl->assign('content', ViewHelper::getTemplate('content_produtos', true, [
             'produtos' => (new Produto)->load()
         ]));

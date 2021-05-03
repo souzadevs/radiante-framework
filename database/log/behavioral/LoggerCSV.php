@@ -20,7 +20,6 @@ class LoggerCSV extends LoggerBehavioral
             $message
         ];
 
-        var_dump($this->filename);
         $file = fopen($this->filename, 'w');
         fputcsv($file, $header, ";");
         fputcsv($file, $row, ";");
