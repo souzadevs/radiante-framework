@@ -7,6 +7,7 @@ use Slim\App;
 use App\Controllers\IndexController;
 use App\Controllers\LoginController;
 use App\Controllers\ProdutoController;
+use App\Controllers\VendaController;
 
 /* ROUTES */
 
@@ -38,6 +39,10 @@ $app->get('/clientes',          function(){
 
 $app->post('/cliente/novo',     function(){
     (new ClienteController())->storeAction();
+});
+
+$app->get('/vendas',     function(){
+    (new VendaController())->indexAction();
 });
 
 $app->get('/login',             function(){
