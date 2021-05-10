@@ -27,4 +27,17 @@ class VendaController
     {
         //Armazenar venda no banco de dados usando Mapper
     }
+
+    public function novaAction()
+    {
+        Tpl::configure(TPL_SET);
+
+        $tpl = new Tpl();
+
+        $tpl->assign('aside', ViewHelper::getTemplate('aside'));
+
+        $tpl->assign('content', ViewHelper::getTemplate('content_nova_venda'));
+
+        $tpl->draw('administracao');
+    }
 }

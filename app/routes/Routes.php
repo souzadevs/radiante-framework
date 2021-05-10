@@ -8,6 +8,7 @@ use App\Controllers\IndexController;
 use App\Controllers\LoginController;
 use App\Controllers\ProdutoController;
 use App\Controllers\VendaController;
+use Rain\Tpl;
 
 /* ROUTES */
 
@@ -41,11 +42,20 @@ $app->post('/cliente/novo',     function(){
     (new ClienteController())->storeAction();
 });
 
-$app->get('/vendas',     function(){
+$app->get('/vendas',            function(){
     (new VendaController())->indexAction();
+});
+
+$app->get('/venda/nova',        function(){
+    (new VendaController())->novaAction();
 });
 
 $app->get('/login',             function(){
     $loginController = new LoginController();
     $loginController->loginFormAction();
+});
+
+$app->get('/teste',             function(){
+    Tpl::configure(TPL_SET);
+    (new Tpl())->draw('teste');
 });

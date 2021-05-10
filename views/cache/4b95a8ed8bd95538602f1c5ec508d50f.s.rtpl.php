@@ -1,4 +1,4 @@
-<div class="content-wrapper">
+<?php if(!class_exists('Rain\Tpl')){exit;}?><div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <div class="container-fluid">
@@ -25,17 +25,17 @@
                     <a class="btn btn-success w-25" href="/venda/nova">
                          Nova venda<i class="fas fa-plus"></i>
                     </a>
-                    {if="$store_success"}
+                    <?php if( $store_success ){ ?>
                     <div class="alert alert-success">
                         Venda realizada com sucesso! <i class="fas fa-check-circle"></i>
                     </div>
-                    {/if}
+                    <?php } ?>
 
-                    {if="$store_failure"}
+                    <?php if( $store_failure ){ ?>
                     <div class="alert alert-danger mt-2">
                         Falha ao salvar venda! <i class="fas fa-window-close    "></i>
                     </div>
-                    {/if}
+                    <?php } ?>
 
                     <div class="card mt-2">
                         <div class="card-header">
@@ -61,17 +61,17 @@
 
                                 </thead>
                                 <tbody id="datatable1">
-                                    {loop="$vendas"}
+                                    <?php $counter1=-1;  if( isset($vendas) && ( is_array($vendas) || $vendas instanceof Traversable ) && sizeof($vendas) ) foreach( $vendas as $key1 => $value1 ){ $counter1++; ?>
                                     <tr>
-                                        <td>{$value.id}</td>
-                                        <td>{$value.cliente}</td>
-                                        <td>{$value.produto}</td>
-                                        <td>{$value.datetime}</td>
+                                        <td><?php echo $value1["id"]; ?></td>
+                                        <td><?php echo $value1["cliente"]; ?></td>
+                                        <td><?php echo $value1["produto"]; ?></td>
+                                        <td><?php echo $value1["datetime"]; ?></td>
                                         <td><i class="mx-auto fas fa-edit"></i></td>
                                         <td><i class="mx-auto fas fa-eye"></i></td>
                                         <td><i class="mx-auto fas fa-trash"></i></td>
                                     </tr>
-                                    {/loop}
+                                    <?php } ?>
 
                                 </tbody>
                             </table>

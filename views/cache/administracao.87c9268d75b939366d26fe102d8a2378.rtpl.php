@@ -193,14 +193,15 @@
   <!-- AdminLTE for demo purposes -->
   <script src="/resources/dist/js/demo.js"></script>
   <!-- Page specific script -->
+
   <script>
-    $(function () {
+    $(document).ready(function () {
       $("#example1").DataTable({
         "responsive": true,
         "lengthChange": false,
         "autoWidth": false,
         "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-      }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+      }).buttons().container().appendTo('#example1 .col-md-6:eq(0)');
 
       $('#example2').DataTable({
         "paging": true,
@@ -212,17 +213,75 @@
         "responsive": true,
       });
     });
+    // $(function () {
+
+
+
+    // });
   </script>
 
   <script>
-    $(document).ready(function () {
-      $("#id").on("keyup", function () {
-        var value = $(this).val().toLowerCase();
-        $("#datatable1 tr").filter(function () {
-          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-        });
-      });
+    // $(document).ready(function () {
+    //   $("#id").on("keyup", function () {
+    //     var value = $(this).val().toLowerCase();
+    //     $("#datatable1 tr").filter(function () {
+    //       $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    //     });
+    //   });
+    // });
+  </script>
+
+  <script>
+    var $rows = $('#datatable1 tr').not(':first');
+    var filters = {
+      col1: '',
+      col2: '',
+      col3: '',
+      col4: ''
+    };
+    $('#id').keyup(function () {
+      var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
+      filters.col1 = val;
+      applyFilters();
     });
+
+    $('#descricao').keyup(function () {
+      var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
+      filters.col2 = val;
+      applyFilters();
+    });
+
+    $('#estoque').keyup(function () {
+      var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
+      filters.col3 = val;
+      applyFilters();
+    });
+
+    $('#preco').keyup(function () {
+      var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
+      filters.col4 = val;
+      applyFilters();
+    });
+
+    function applyFilters() {
+      $rows.show();
+      $rows.filter(function () {
+        var text = $(this).find('td:nth-child(1)').text().replace(/\s+/g, ' ').toLowerCase();
+        return !~text.indexOf(filters.col1);
+      }).hide();
+      $rows.filter(function () {
+        var text = $(this).find('td:nth-child(2)').text().replace(/\s+/g, ' ').toLowerCase();
+        return !~text.indexOf(filters.col2);
+      }).hide();
+      $rows.filter(function () {
+        var text = $(this).find('td:nth-child(3)').text().replace(/\s+/g, ' ').toLowerCase();
+        return !~text.indexOf(filters.col3);
+      }).hide();
+      $rows.filter(function () {
+        var text = $(this).find('td:nth-child(4)').text().replace(/\s+/g, ' ').toLowerCase();
+        return !~text.indexOf(filters.col4);
+      }).hide();
+    };
   </script>
 </body>
 
